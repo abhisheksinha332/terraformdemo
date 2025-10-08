@@ -16,3 +16,23 @@ steps:
 - script: echo $(ARM_CLIENT_ID)
   displayName: 'Run a one-line script'
 
+- task: TerraformInstaller@2
+  inputs:
+    terraformVersion: 'latest'
+
+
+- task: TerraformCLI@2
+  inputs:
+    command: 'init'
+    commandOptions: '-var client_id=$(ARM_CLIENT_ID) -var client_secret=$(ARM_CLIENT_SECRET) -var subscription_id=$(ARM_SUBSCRIPTION_ID) -var tenant_id=$(ARM_TENANT_ID)'
+    backendType: 'azurerm'
+    backendServiceArm: 'TerraformSPN'
+    backendAzureRmTenantId: '$(ARM_TENANT_ID)'
+    backendAzureRmSubscriptionId: '$(ARM_SUBSCRIPTION_ID)'
+    ensureBackend: true
+    backendAzureRmResourceGroupName: 'Abhishek'
+    backendAzureRmResourceGroupLocation: 'Central India'
+    backendAzureRmStorageAccountName: 'abhishekxyz324'
+    backendAzureRmContainerName: 'terraformstate'
+    backendAzureRmKey: 'main.tfstate'
+    allowTelemetryCollection: true
