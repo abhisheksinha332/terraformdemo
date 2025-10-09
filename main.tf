@@ -22,7 +22,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg-app" {
 
-  name     = "my-app-rg-terraform"
+  name     = "my-app-rg-terraform-${var.environment}"
   location = "West US"
 }
 

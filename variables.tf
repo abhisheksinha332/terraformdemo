@@ -16,3 +16,8 @@ variable tenant_id {
   type        = string
   description = "description"
 }
+
+variable environment{
+  type        = string
+  description = "description"
+}
