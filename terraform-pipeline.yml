@@ -16,7 +16,9 @@ variables:
 stages:
   - stage: PRD
     variables:
-      env: prd
+    - name: env
+      value: prd
+    
     jobs:
       - job: Terraform
                 
