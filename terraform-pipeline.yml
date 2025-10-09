@@ -14,8 +14,7 @@ variables:
 
 stages:
   - stage: PRD
-    variables:
-      environment: "prd"
+ 
     jobs:
       - job: Terraform
                 
@@ -48,17 +47,16 @@ stages:
         - task: TerraformCLI@2
           inputs:
             command: 'plan'
-            commandOptions: '-var client_id=$(ARM_CLIENT_ID) -var client_secret=$(ARM_CLIENT_SECRET) -var subscription_id=$(ARM_SUBSCRIPTION_ID) -var tenant_id=$(ARM_TENANT_ID)'
+            commandOptions: '-var client_id=$(ARM_CLIENT_ID) -var client_secret=$(ARM_CLIENT_SECRET) -var subscription_id=$(ARM_SUBSCRIPTION_ID) -var tenant_id=$(ARM_TENANT_ID) -var environment=$(environment-prd)'
             allowTelemetryCollection: true
         - task: TerraformCLI@2
           inputs:
             command: 'apply'
-            commandOptions: '-var client_id=$(ARM_CLIENT_ID) -var client_secret=$(ARM_CLIENT_SECRET) -var subscription_id=$(ARM_SUBSCRIPTION_ID) -var tenant_id=$(ARM_TENANT_ID)'
+            commandOptions: '-var client_id=$(ARM_CLIENT_ID) -var client_secret=$(ARM_CLIENT_SECRET) -var subscription_id=$(ARM_SUBSCRIPTION_ID) -var tenant_id=$(ARM_TENANT_ID) -var environment=$(environment-qfe)'
             allowTelemetryCollection: true
 
   - stage: QFE
-    variables:
-      environment: "qfe"
+
     jobs:
       - job: Terraform
                 
