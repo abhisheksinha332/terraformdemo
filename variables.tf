@@ -1,7 +1,3 @@
-variable name {
-  type        = string
-  description = "description"
-}
 
 variable client_id {
   type        = string
